@@ -24,6 +24,7 @@ int points;
 double t0;
 int init;
 int c[8];
+int ackblk;
 }
 DATA;
 
@@ -104,7 +105,7 @@ static int slotInit(PARAM *p, DATA *d)
 static int slotNullEvent(PARAM *p, DATA *d)
 {
   if(p == NULL || d == NULL) return -1;
-  alarmNullEvent(p, alarmHTML, ALARM_DOCK);
+  alarmNullEvent(p, alarmHTML, ALARM_DOCK); //d->ackblk = 0;
 
   int i, AIoffset = modbusdaemon_CYCLE3_BASE;
   for(i = 0; i<4; i++)
@@ -177,6 +178,7 @@ static int slotButtonReleasedEvent(PARAM *p, int id, DATA *d)
 static int slotTextEvent(PARAM *p, int id, DATA *d, const char *text)
 {
   if(p == NULL || id == 0 || d == NULL || text == NULL) return -1;
+//  if((id == alarmHTML) && !d->ackblk) { d->ackblk = 1; alarmTextEvent(text); }
   if(id == alarmHTML) alarmTextEvent(text);
   return 0;
 }

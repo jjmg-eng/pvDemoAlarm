@@ -30,6 +30,7 @@ class Alarm
     int maxCount();
     int updateWidgetHTML(PARAM *p, int id, int *state);
     rlSpreadsheetTable table;
+    int ackblk;
   private:
     const char *strip(const char *text);
     rlString txt1, txt2;

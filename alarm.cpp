@@ -9,6 +9,7 @@ Alarm::Alarm(int useEventLog)
 {
     max_alarms = num_alarms = 0;
     use_event_log = useEventLog;
+    ackblk = 0;
 }
 
 Alarm::~Alarm()

@@ -112,7 +112,6 @@ static void task01()
 static void task02()
 {
 	static int i = 0;
-	updateAlarm();
  	i++;
 };
 
@@ -124,12 +123,14 @@ static void setup()
 	db.open("QMYSQL","localhost","pvdb","","");
 	db.dbQuery("create table if not exists ALARM (t timestamp(3), Estado varchar(3), Descrição varchar(255));");
 	db.dbQuery("create index if not exists idx_ALARM on ALARM(t);");
+//	db.dbQuery("create index idx_ALARM on ALARM(t);");
 
 	i=sprintf(buf,"create table if not exists %s (t timestamp(3)",tableName);
 	for (j=0; j<8; j++) i+=sprintf(&buf[i],",AI%d float", j+1);
 	i+=sprintf(&buf[i],");"); buf[i]=0;
 	db.dbQuery(buf);
 	i=sprintf(buf,"create index if not exists idx_%s on %s(t);",tableName, tableName);
+//	i=sprintf(buf,"create index idx_%s on %s(t);",tableName, tableName);
         db.dbQuery(buf);
         i=sprintf(buf,"select * from %s limit 1;",tableName);
         db.dbQuery(buf);
@@ -148,7 +149,7 @@ static void loop()
 	static int i=0;
 	
 	if(!(i%10)) task01(); // Chamar task01 a cada 1 segundo
-	if(!(i%15)) task02(); // Chamar task02 a cada 0.5 segundos
+	if(!(i%2)) task02(); // Chamar task02 a cada 0.5 segundos
 
 	for(int j=0; j<16; j++)
 	{
@@ -162,6 +163,8 @@ static void loop()
 			// printf("%s\n",buf);
 		}
 	}
+
+	updateAlarm();
 
 	i++;
 	pvSleep(TZ); // TZ = 100 ms

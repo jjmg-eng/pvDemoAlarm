@@ -144,16 +144,20 @@ void alarmNullEvent(PARAM *p, int idHTML, int idDOCK)
       pvStatusMessage(p,0,255,0,"Normal operation");
       pvHide(p,idDOCK);
     }
+    myalarm.ackblk = 0;
 }
 
 void alarmTextEvent(const char *text)
 {
-  int a = (atoi(strrchr(text,'a')+1) - 1);
-  AlarmNotAck[a / 32] &= ~ (1 << (a % 32));
-  a++;
-  puts("ACK");
-  puts(myalarm.table.text(2,a));
-  myalarm.ack(text);
+	if(!myalarm.ackblk) {
+	  myalarm.ackblk = 1;
+	  int a = (atoi(strrchr(text,'a')+1) - 1);
+	  AlarmNotAck[a / 32] &= ~ (1 << (a % 32));
+	  a++;
+	  puts("ACK");
+	  puts(myalarm.table.text(2,a));
+	  myalarm.ack(text);
+	}
 }
 
 #endif // _MAIN_
