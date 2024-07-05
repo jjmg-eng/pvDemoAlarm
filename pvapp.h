@@ -23,6 +23,7 @@ static int trace=1; // todo: set trace=0 if you do not want printf() within even
 //#include "siemensdaemon.h"            // this is generated
 //#include "ppidaemon.h"                // this is generated
 
+int show_mask2(PARAM *p);
 int show_mask1(PARAM *p);
 
 //***************************************************************************
@@ -46,13 +47,21 @@ int show_mask1(PARAM *p);
 #include "rltime.h"
 #include "qtdatabase.h"
 #include "jjalarm.h"
+#include "rlsvganimator.h"
+#include <math.h>
+
+#define BG_COLOR 0xef,0xf0,0xf1
 
 /////////////////////////////////////////////
 #ifndef _MAIN_  // Código exclusivo das Masks
 /////////////////////////////////////////////
 extern rlMutex    dbmutex;
 extern qtDatabase db;
-
+// Funções comuns para as máscaras inseridas em mask1.cpp
+extern void configMask(PARAM *p, int id, int index);
+extern int maskTextEvent(const char *text);
+extern int drawSVG(PARAM *p, int id,rlSvgAnimator *s);
+extern int initSVG(PARAM *p, int id, rlSvgAnimator *s, const char *filename, int x, int y, int w, int h, float SCALE);
 
 /////////////////////////////////////////////////////////////////
 #else // Aqui começa o código que vai ser compilado na seção Main

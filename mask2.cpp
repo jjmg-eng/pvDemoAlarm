@@ -1,98 +1,29 @@
 ////////////////////////////////////////////////////////////////////////////
 //
-// show_mask1 for ProcessViewServer created: ter mai 7 07:25:59 2024
+// show_mask2 for ProcessViewServer created: sex. jul. 5 14:21:09 2024
 //
 ////////////////////////////////////////////////////////////////////////////
 #include "pvapp.h"
-static const char *maskName[] ={
-" Mask1 - Leituras Analógicas",
-" Mask2 - Histórico de Eventos",
-//" Mask3 - Unifilar para Teste de SVG",
-//" Mask4 - Sinótico",
-"" };
-
-void configMask(PARAM *p, int id, int index)
-{
-    pvSetGeometry(p,id,341,9,500,30);
-    pvSetFont(p,id,"Ubuntu",16,0,0,0,0);
-    for(int i = 0; maskName[i][0]; i++)   pvInsertItem(p, id, -1, NULL, maskName[i]);
-    pvSetCurrentItem(p,id,index - 1);
-    pvResize(p,0,1366,768);
-}
-
-int maskTextEvent(const char *text)
-{
-    int j = -1;
-    for(int i = 0; maskName[i][0]; i++)   if(!strcmp(maskName[i],text)) j = i;
-    return ++j;
-}
-
-int drawSVG(PARAM *p, int id,rlSvgAnimator *s)
-{
-	if(s->isModified == 0) return 0;
-	gBeginDraw(p,id);
-	s->writeSocket();
-	gEndDraw(p);
-	return 0;
-}
-
-int initSVG(PARAM *p, int id, rlSvgAnimator *s, const char *filename, int x, int y, int w, int h, float SCALE)
-{
-	pvSetGeometry(p,id,x,y,w*SCALE,h*SCALE);
-	s->setSocket(&p->s);
-	s->setId(id);
-	s->read(filename);
-	s->setScale(SCALE);
-	s->setWindowSize(w,h);
-	s->setMainObject("main");
-	s->setMatrix ("main", SCALE, 0, 0, 0, 0, 0);
-	return 0;	
-}
-
 
 // _begin_of_generated_area_ (do not edit -> use ui2pvc) -------------------
 
 // our mask contains the following objects
 enum {
   ID_MAIN_WIDGET = 0,
-  AI1,
-  AI2,
-  AI3,
-  AI4,
-  Trend,
-  Table1,
-  GroupBox_alarm,
-  alarmHTML,
-  obj1,
   MaskBrowser,
+  AlarmTable,
   ID_END_OF_WIDGETS
 };
 
 // our mask contains the following widget names
   static const char *widgetName[] = {
   "ID_MAIN_WIDGET",
-  "AI1",
-  "AI2",
-  "AI3",
-  "AI4",
-  "Trend",
-  "Table1",
-  "GroupBox_alarm",
-  "alarmHTML",
-  "obj1",
   "MaskBrowser",
+  "AlarmTable",
   "ID_END_OF_WIDGETS",
   ""};
 
   static const char *toolTip[] = {
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
   "",
   "",
   "",
@@ -102,28 +33,12 @@ enum {
   "",
   "",
   "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
   ""};
 
   static const int widgetType[ID_END_OF_WIDGETS+1] = {
   0,
-  TQwtDial,
-  TQwtDial,
-  TQwtDial,
-  TQwtDial,
-  TQwtPlotWidget,
-  TQTable,
-  TQGroupBox,
-  TQTextBrowser,
-  TQPushButton,
   TQComboBox,
+  TQTable,
   -1 };
 
 static int generated_defineMask(PARAM *p)
@@ -137,49 +52,13 @@ static int generated_defineMask(PARAM *p)
   if(w==h) depth=0; // fool the compiler
   pvStartDefinition(p,ID_END_OF_WIDGETS);
 
-  pvQwtDial(p,AI1,0);
-  pvSetGeometry(p,AI1,3,181,210,210);
-  pvSetFont(p,AI1,"Ubuntu",11,0,0,0,0);
-
-  pvQwtDial(p,AI2,0);
-  pvSetGeometry(p,AI2,255,181,210,210);
-  pvSetFont(p,AI2,"Ubuntu",11,0,0,0,0);
-
-  pvQwtDial(p,AI3,0);
-  pvSetGeometry(p,AI3,515,181,210,210);
-  pvSetFont(p,AI3,"Ubuntu",11,0,0,0,0);
-
-  pvQwtDial(p,AI4,0);
-  pvSetGeometry(p,AI4,771,181,210,210);
-  pvSetFont(p,AI4,"Ubuntu",11,0,0,0,0);
-
-  pvQwtPlotWidget(p,Trend,0,10,1000);
-  pvSetGeometry(p,Trend,3,400,1020,360);
-  qpwSetCanvasBackground(p,Trend,239,240,241);
-  qpwEnableAxis(p,Trend,yLeft);
-  qpwEnableAxis(p,Trend,xBottom);
-  pvSetFont(p,Trend,"Ubuntu",11,0,0,0,0);
-
-  pvQTable(p,Table1,0,2,8);
-  pvSetGeometry(p,Table1,3,50,1024,103);
-  pvSetFont(p,Table1,"Ubuntu",11,0,0,0,0);
-
-  pvQGroupBox(p,GroupBox_alarm,0,-1,HORIZONTAL,pvtr(""));
-  pvSetGeometry(p,GroupBox_alarm,1089,111,204,132);
-  pvSetFont(p,GroupBox_alarm,"Ubuntu",11,0,0,0,0);
-
-  pvQTextBrowser(p,alarmHTML,GroupBox_alarm);
-  pvSetGeometry(p,alarmHTML,54,51,99,30);
-  pvSetFont(p,alarmHTML,"Ubuntu",11,0,0,0,0);
-
-  pvQPushButton(p,obj1,0);
-  pvSetGeometry(p,obj1,1122,321,99,30);
-  pvSetText(p,obj1,pvtr("PushButton"));
-  pvSetFont(p,obj1,"Ubuntu",11,0,0,0,0);
-
   pvQComboBox(p,MaskBrowser,0,0,AtBottom);
-  pvSetGeometry(p,MaskBrowser,402,12,99,30);
-  pvSetFont(p,MaskBrowser,"Ubuntu",11,0,0,0,0);
+  pvSetGeometry(p,MaskBrowser,345,9,99,30);
+  pvSetFont(p,MaskBrowser,"Noto Sans",10,0,0,0,0);
+
+  pvQTable(p,AlarmTable,0,2,3);
+  pvSetGeometry(p,AlarmTable,2,50,1020,710);
+  pvSetFont(p,AlarmTable,"Noto Sans",10,0,0,0,0);
 
 
   pvEndDefinition(p);
@@ -188,7 +67,7 @@ static int generated_defineMask(PARAM *p)
 
 // _end_of_generated_area_ (do not edit -> use ui2pvc) ---------------------
 
-#include "mask1_slots.h"
+#include "mask2_slots.h"
 
 static int defineMask(PARAM *p)
 {
@@ -214,7 +93,7 @@ static int readData(DATA *d) // from shared memory, database or something else
 }
 
 
-int show_mask1(PARAM *p)
+int show_mask2(PARAM *p)
 {
   DATA d;
   char event[MAX_EVENT_LENGTH];

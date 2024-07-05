@@ -36,6 +36,7 @@ static int slotInit(PARAM *p, DATA *d)
 {
   if(p == NULL || d == NULL) return -1;
   memset(d,0,sizeof(DATA));
+  configMask(p,MaskBrowser,1);
   alarmInit(p,GroupBox_alarm,alarmHTML,ALARM_DOCK);
   pvResize(p,0,1024,768);
 //****************************************************************************
@@ -180,7 +181,7 @@ static int slotTextEvent(PARAM *p, int id, DATA *d, const char *text)
   if(p == NULL || id == 0 || d == NULL || text == NULL) return -1;
 //  if((id == alarmHTML) && !d->ackblk) { d->ackblk = 1; alarmTextEvent(text); }
   if(id == alarmHTML) alarmTextEvent(text);
-  return 0;
+  return maskTextEvent(text);
 }
 
 static int slotSliderEvent(PARAM *p, int id, DATA *d, int val)
