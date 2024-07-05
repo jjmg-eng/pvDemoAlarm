@@ -18,9 +18,11 @@ SOURCES += alarm.cpp
 #HEADERS += processviewserver.h
 #HEADERS += rldefine.h
 HEADERS += pvapp.h      \
+           mask3_slots.h \
            mask2_slots.h \
            mask1_slots.h
 SOURCES += main.cpp     \
+           mask3.cpp \
            mask2.cpp \
            mask1.cpp
 

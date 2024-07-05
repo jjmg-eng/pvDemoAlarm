@@ -32,6 +32,10 @@ int ret;
     if(trace) printf("show_mask%d\n", ret);
     switch(ret)
     {
+      case 3:
+        pvStatusMessage(p,-1,-1,-1,"mask3");
+        ret = show_mask3(p);
+        break;
       case 2:
         pvStatusMessage(p,-1,-1,-1,"mask2");
         ret = show_mask2(p);

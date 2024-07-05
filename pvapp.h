@@ -23,6 +23,7 @@ static int trace=1; // todo: set trace=0 if you do not want printf() within even
 //#include "siemensdaemon.h"            // this is generated
 //#include "ppidaemon.h"                // this is generated
 
+int show_mask3(PARAM *p);
 int show_mask2(PARAM *p);
 int show_mask1(PARAM *p);
 

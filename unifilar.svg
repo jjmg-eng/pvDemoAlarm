@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1073.1707"
+   height="526.98956"
+   viewBox="0 0 1073.1707 526.98956"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   sodipodi:docname="unifilar.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.4273722"
+     inkscape:cx="417.59436"
+     inkscape:cy="345.16254"
+     inkscape:document-units="px"
+     inkscape:current-layer="main"
+     showgrid="false"
+     fit-margin-top="10"
+     fit-margin-right="10"
+     fit-margin-left="10"
+     fit-margin-bottom="10"
+     units="px"
+     inkscape:window-width="1920"
+     inkscape:window-height="1020"
+     inkscape:window-x="0"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1"
+     scale-x="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="Unifilar 1">
+    <g
+       id="main"
+       inkscape:label="#g5272">
+      <ellipse
+         inkscape:label="#path4936"
+         ry="53.864704"
+         rx="54.424366"
+         cy="428.55002"
+         cx="533.10724"
+         id="PV.G2"
+         style="fill:#99ff55;stroke:#008000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none" />
+      <path
+         inkscape:label="#path4938"
+         inkscape:connector-curvature="0"
+         id="B2"
+         d="M 533.10723,376.3051 V 212.0126"
+         style="fill:none;stroke:#008000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <g
+         style="stroke-width:0.5045678;stroke-miterlimit:4;stroke-dasharray:none"
+         transform="matrix(3.9637885,0,0,3.9637885,856.76333,-380.35133)"
+         inkscape:label="#g4965"
+         id="B23">
+        <path
+           style="fill:none;stroke:#008000;stroke-width:0.5045678;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M -81.653221,137.83834 V 99.705868"
+           id="path4940"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#008000;stroke-width:0.5045678;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m -121.77522,99.76944 h 80.243997"
+           id="path4942"
+           inkscape:connector-curvature="0" />
+      </g>
+      <text
+         id="text4969"
+         y="438.2645"
+         x="532.37982"
+         style="font-style:normal;font-weight:normal;font-size:33.56007385px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+         xml:space="preserve"><tspan
+           style="font-size:25.1700592px;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+           y="438.2645"
+           x="532.37982"
+           id="tspan4967"
+           sodipodi:role="line">Gen#2</tspan></text>
+      <ellipse
+         inkscape:label="#ellipse4979"
+         style="fill:#99ff55;stroke:#008000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+         id="PV.G3"
+         cx="897.17938"
+         cy="428.55002"
+         rx="54.424366"
+         ry="53.864704" />
+      <path
+         inkscape:label="#path4981"
+         style="fill:none;stroke:#008000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 897.17935,376.3051 V 212.0126"
+         id="B3"
+         inkscape:connector-curvature="0" />
+      <g
+         style="stroke-width:0.5045678;stroke-miterlimit:4;stroke-dasharray:none"
+         inkscape:label="#g4987"
+         transform="matrix(3.9637885,0,0,3.9637885,1220.8355,-380.35134)"
+         id="B32">
+        <path
+           inkscape:connector-curvature="0"
+           id="path4983"
+           d="M -81.653221,137.83834 V 99.705868"
+           style="fill:none;stroke:#008000;stroke-width:0.5045678;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+        <path
+           inkscape:connector-curvature="0"
+           id="path4985"
+           d="m -121.77522,99.76944 h 80.243997"
+           style="fill:none;stroke:#008000;stroke-width:0.5045678;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      </g>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:33.56007385px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+         x="896.45197"
+         y="438.2645"
+         id="text4999"><tspan
+           sodipodi:role="line"
+           id="tspan4997"
+           x="896.45197"
+           y="438.2645"
+           style="font-size:25.1700592px;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none">Gen#3</tspan></text>
+      <ellipse
+         inkscape:label="#ellipse5009"
+         ry="53.864704"
+         rx="54.424366"
+         cy="428.55008"
+         cx="169.03514"
+         id="PV.G1"
+         style="fill:#99ff55;stroke:#008000;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none" />
+      <path
+         inkscape:label="#path5011"
+         inkscape:connector-curvature="0"
+         id="B1"
+         d="M 169.03512,376.30514 V 212.01264"
+         style="fill:none;stroke:#008000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <g
+         style="stroke-width:0.5045678;stroke-miterlimit:4;stroke-dasharray:none"
+         inkscape:label="#g5017"
+         id="B12"
+         transform="matrix(3.9637885,0,0,3.9637885,492.69122,-380.35129)">
+        <path
+           style="fill:none;stroke:#008000;stroke-width:0.5045678;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M -81.653221,137.83834 V 99.705868"
+           id="path5013"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#008000;stroke-width:0.5045678;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m -121.77522,99.76944 h 80.243997"
+           id="path5015"
+           inkscape:connector-curvature="0" />
+      </g>
+      <text
+         id="text5029"
+         y="438.26456"
+         x="168.30771"
+         style="font-style:normal;font-weight:normal;font-size:33.56007385px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+         xml:space="preserve"><tspan
+           style="font-size:25.1700592px;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+           y="438.26456"
+           x="168.30771"
+           id="tspan5027"
+           sodipodi:role="line">Gen#1</tspan></text>
+      <g
+         id="PV.Q1"
+         inkscape:label="#g5280">
+        <path
+           style="fill:none;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 169.03512,210.82378 v -46.0019"
+           id="path5019"
+           inkscape:connector-curvature="0" />
+        <ellipse
+           ry="4.1241174"
+           rx="4.1240001"
+           cy="211.87003"
+           cx="169.03514"
+           id="path5274"
+           style="fill:#ffffff;stroke:#b3b3b3;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none" />
+      </g>
+      <g
+         inkscape:label="#g5280"
+         id="PV.Q3"
+         transform="translate(728.14421)">
+        <path
+           inkscape:connector-curvature="0"
+           id="path5284"
+           d="m 169.03512,210.82378 v -46.0019"
+           style="fill:none;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+        <ellipse
+           style="fill:#ffffff;stroke:#b3b3b3;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+           id="ellipse5286"
+           cx="169.03514"
+           cy="211.87003"
+           rx="4.1240001"
+           ry="4.1241174" />
+      </g>
+      <g
+         transform="translate(364.07209)"
+         id="PV.Q2"
+         inkscape:label="#g5280">
+        <path
+           style="fill:none;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 169.03512,210.82378 v -46.0019"
+           id="path5290"
+           inkscape:connector-curvature="0" />
+        <ellipse
+           ry="4.1241174"
+           rx="4.1240001"
+           cy="211.87003"
+           cx="169.03514"
+           id="ellipse5292"
+           style="fill:#ffffff;stroke:#b3b3b3;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none" />
+      </g>
+      <g
+         inkscape:label="#g5280"
+         id="PV.Q12"
+         transform="rotate(90,346.40774,192.48625)">
+        <path
+           inkscape:connector-curvature="0"
+           id="path5296"
+           d="m 169.03512,210.82378 v -46.0019"
+           style="fill:none;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+        <ellipse
+           style="fill:#ffffff;stroke:#b3b3b3;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none"
+           id="ellipse5298"
+           cx="169.03514"
+           cy="211.87003"
+           rx="4.1240001"
+           ry="4.1241174" />
+      </g>
+      <g
+         transform="rotate(90,528.44383,374.52233)"
+         id="PV.Q23"
+         inkscape:label="#g5280">
+        <path
+           style="fill:none;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 169.03512,210.82378 v -46.0019"
+           id="path5302"
+           inkscape:connector-curvature="0" />
+        <ellipse
+           ry="4.1241174"
+           rx="4.1240001"
+           cy="211.87003"
+           cx="169.03514"
+           id="ellipse5304"
+           style="fill:#ffffff;stroke:#b3b3b3;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none" />
+      </g>
+    </g>
+  </g>
+</svg>

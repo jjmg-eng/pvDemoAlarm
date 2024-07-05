@@ -55,11 +55,13 @@ OBJECTS_DIR   = ./
 SOURCES       = qtdatabase.cpp \
 		alarm.cpp \
 		main.cpp \
+		mask3.cpp \
 		mask2.cpp \
 		mask1.cpp 
 OBJECTS       = qtdatabase.o \
 		alarm.o \
 		main.o \
+		mask3.o \
 		mask2.o \
 		mask1.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -166,10 +168,12 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		alarm.h \
 		jjalarm.h \
 		pvapp.h \
+		mask3_slots.h \
 		mask2_slots.h \
 		mask1_slots.h qtdatabase.cpp \
 		alarm.cpp \
 		main.cpp \
+		mask3.cpp \
 		mask2.cpp \
 		mask1.cpp
 QMAKE_TARGET  = pvs
@@ -401,8 +405,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents qtdatabase.h alarm.h jjalarm.h pvapp.h mask2_slots.h mask1_slots.h $(DISTDIR)/
-	$(COPY_FILE) --parents qtdatabase.cpp alarm.cpp main.cpp mask2.cpp mask1.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents qtdatabase.h alarm.h jjalarm.h pvapp.h mask3_slots.h mask2_slots.h mask1_slots.h $(DISTDIR)/
+	$(COPY_FILE) --parents qtdatabase.cpp alarm.cpp main.cpp mask3.cpp mask2.cpp mask1.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -495,6 +499,33 @@ main.o: main.cpp pvapp.h \
 		/opt/pvb/rllib/lib/rlsvganimator.h \
 		/opt/pvb/rllib/lib/rlinifile.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
+
+mask3.o: mask3.cpp pvapp.h \
+		/opt/pvb/pvserver/processviewserver.h \
+		/opt/pvb/pvserver/vmsgl.h \
+		/opt/pvb/pvserver/vmsglext.h \
+		/opt/pvb/pvserver/wthread.h \
+		/opt/pvb/rllib/lib/rlmodbusclient.h \
+		/opt/pvb/rllib/lib/rldefine.h \
+		/opt/pvb/rllib/lib/rlmodbus.h \
+		/opt/pvb/rllib/lib/rlsocket.h \
+		/opt/pvb/rllib/lib/rlstring.h \
+		/opt/pvb/rllib/lib/rlserial.h \
+		/opt/pvb/rllib/lib/rlthread.h \
+		/opt/pvb/rllib/lib/rlwthread.h \
+		/opt/pvb/rllib/lib/rlmailbox.h \
+		/opt/pvb/rllib/lib/rlsharedmemory.h \
+		modbusdaemon.h \
+		/opt/pvb/rllib/lib/rltime.h \
+		qtdatabase.h \
+		jjalarm.h \
+		alarm.h \
+		/opt/pvb/rllib/lib/rlspreadsheet.h \
+		/opt/pvb/rllib/lib/rlevent.h \
+		/opt/pvb/rllib/lib/rlsvganimator.h \
+		/opt/pvb/rllib/lib/rlinifile.h \
+		mask3_slots.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mask3.o mask3.cpp
 
 mask2.o: mask2.cpp pvapp.h \
 		/opt/pvb/pvserver/processviewserver.h \

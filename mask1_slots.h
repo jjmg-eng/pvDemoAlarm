@@ -38,7 +38,6 @@ static int slotInit(PARAM *p, DATA *d)
   memset(d,0,sizeof(DATA));
   configMask(p,MaskBrowser,1);
   alarmInit(p,GroupBox_alarm,alarmHTML,ALARM_DOCK);
-  pvResize(p,0,1024,768);
 //****************************************************************************
 // Configuração dos medidores
   for(int i = 0; i<4; i++) 
