@@ -49,6 +49,185 @@ int initSVG(PARAM *p, int id, rlSvgAnimator *s, const char *filename, int x, int
 	return 0;	
 }
 
+////////////////////////////////////////////////////////////////////////
+
+typedef struct
+{
+ float x,y;
+} cartesian;
+
+static void polarToCartesian(float centerX, float centerY, float radius, float angleInDegrees, cartesian *p)
+{
+  float angleInRadians = angleInDegrees * acos(-1) / 180.0;
+  p->x = centerX + radius * cos(angleInRadians);
+  p->y = centerY + radius * sin(angleInRadians);
+}
+
+static char *describeArc(char *buf, float x, float y, float radius, float startAngle, float endAngle)
+{
+    cartesian start, end;
+
+    endAngle += endAngle > startAngle ? 0 : 360;
+    polarToCartesian(x, y, radius, startAngle, &start);
+    polarToCartesian(x, y, radius, endAngle, &end);
+
+    int arcSweep = (endAngle - startAngle <= 180);
+
+    sprintf(buf,"M %g,%g A %g,%g 0 %d 1 %g,%g", start.x, start.y, radius, radius, !arcSweep, end.x, end.y);
+    return buf;
+}
+
+void initMeter(meterSvg *m, rlSvgAnimator *s, const char *fileName,
+              const char *Name, float Vmin, float Vmax)
+{
+    pugi::xml_document doc;
+    doc.load_file(fileName);
+    pugi::xml_node node = doc.child("svg").child("g").child("g");
+    pugi::xml_node meter = node.find_child_by_attribute("g", "id", Name);
+
+    meter = meter.first_child();
+    m->start = meter.attribute("sodipodi:start").as_float()*180/acos(-1);
+    m->end   = meter.attribute("sodipodi:end").as_float()*180/acos(-1);
+
+    meter = meter.next_sibling();
+    m->cx = meter.attribute("sodipodi:cx").as_float();
+    m->cy = meter.attribute("sodipodi:cy").as_float();
+    m->rx = meter.attribute("sodipodi:rx").as_float();
+    m->ry = meter.attribute("sodipodi:ry").as_float();
+    strcpy(m->NAME,Name);
+    strcpy(m->VAL,meter.attribute("id").value());
+
+    meter = meter.next_sibling();
+    strcpy(m->TAG,meter.attribute("id").value());
+
+    meter = meter.next_sibling();
+    strcpy(m->NEEDLE,meter.attribute("id").value());
+    m->s = s;
+    m->Vmin = Vmin;
+    m->Vmax = Vmax;
+}
+
+void MeterSetValue(meterSvg *m, float val)
+{
+    char buf[256];
+    float Vpu = ((val-m->Vmin)/(m->Vmax-m->Vmin));
+    Vpu = Vpu > 1 ? 1 : Vpu < 0 ? 0 : Vpu;
+    float arc = m->end - m->start;
+    arc += m->end > m->start ? 0 : 360;
+    float ea = m->start + Vpu * arc, sa = m->start;
+    m->s->svgPrintf(m->VAL,"d=","%s",describeArc(buf, m->cx, m->cy, m->rx, sa, ea));
+//    m->s->setMatrix(m->NEEDLE, 1, ( Vpu - 0.5) * acos(-1) * arc/180, 0,0, m->cx, m->cy);
+    m->s->setMatrix(m->NEEDLE, 1, (Vpu * arc - 270 + sa) * acos(-1)/180, 0,0, m->cx, m->cy);
+    m->s->svgTextPrintf(m->TAG,"%4.0f",val);
+}
+
+void initBargraph(meterSvg *m, rlSvgAnimator *s, const char *fileName, const char *Name,
+                float Vmin, float Vmax,
+                float LL, float HH,
+                float L, float H,
+                float LO, float HI)
+{
+    char buf[256];
+    float T = (Vmax-Vmin) / 100;
+    float AH = HH - H;
+    float AL = L - LL;
+    float N = H - L;
+    float O = HI- LO;
+
+    pugi::xml_document doc;
+    doc.load_file(fileName);
+    pugi::xml_node node = doc.child("svg").child("g").child("g");
+    pugi::xml_node meter = node.find_child_by_attribute("g", "id", Name);
+    meter = meter.first_child();  // Escala
+    meter = meter.next_sibling(); // Faixa total
+
+    char c1, c2;
+    sscanf(meter.attribute("d").value(),"%c %f,%f %c %g", &c1, &m->cx, &m->cy, &c2, &m->ry);
+
+    meter = meter.next_sibling(); // Faixa alarme alto
+    sprintf(buf,"M %f,%f v %f", m->cx, m->cy - (HH - Vmax)/T, AH / T);
+    s->svgPrintf(meter.attribute("id").value(),"d=","%s", buf);
+    strcpy(m->AH,meter.attribute("id").value());
+
+    meter = meter.next_sibling(); // Faixa alarme baixo
+    sprintf(buf,"M %f,%f v %f", m->cx, m->cy - (L - Vmax)/T, AL / T);
+    s->svgPrintf(meter.attribute("id").value(),"d=","%s", buf);
+    strcpy(m->AL,meter.attribute("id").value());
+
+    meter = meter.next_sibling(); // Faixa normal
+    sprintf(buf,"M %f,%f v %f", m->cx, m->cy - (H - Vmax)/T, N / T);
+    s->svgPrintf(meter.attribute("id").value(),"d=","%s", buf);
+
+    meter = meter.next_sibling(); // Faixa ótima
+    sprintf(buf,"M %f,%f v %f", m->cx, m->cy - (HI - Vmax)/T, O / T);
+    s->svgPrintf(meter.attribute("id").value(),"d=","%s", buf);
+
+    meter = meter.next_sibling(); // Agulha
+    strcpy(m->NEEDLE,meter.attribute("id").value());
+
+    meter = meter.next_sibling(); // Display
+    strcpy(m->TAG,meter.attribute("id").value());
+
+    meter = meter.next_sibling(); // Alarme prioridade 1
+    strcpy(m->A1,meter.attribute("id").value());
+
+    meter = meter.next_sibling(); // Alarme prioridade 2
+    strcpy(m->A2,meter.attribute("id").value());
+
+    meter = meter.next_sibling();
+    meter = meter.next_sibling(); // PID
+    strcpy(m->SP,meter.attribute("id").value());
+    meter = meter.next_sibling();
+    strcpy(m->MV,meter.attribute("id").value());
+
+    strcpy(m->NAME,Name);
+    m->s = s;
+    m->Vmin = Vmin;
+    m->Vmax = Vmax;
+    m->LL = LL;
+    m->HH = HH;
+    m->L = L;
+    m->H = H;
+    s->show(m->A1,0);
+    s->show(m->A2,0);
+}
+
+void BargraphSetValue(meterSvg *m, float val)
+{
+    rlSvgAnimator *s = m->s;
+
+    float Vpu = ((val-m->Vmin)/(m->Vmax-m->Vmin));
+    Vpu = Vpu > 1 ? 1 : Vpu < 0 ? 0 : Vpu;
+    s->setMatrix(m->NEEDLE, 1, 0, 0,(0.5 - Vpu)*100 , 0,0);
+    s->svgTextPrintf(m->TAG,"%4.0f",val);
+
+    if(val > m->HH)    s->svgChangeStyleOption(m->AH,"stroke:","#ff6600\n");
+    else
+        if(val > m->H) s->svgChangeStyleOption(m->AH,"stroke:","#ffff00\n");
+        else           s->svgChangeStyleOption(m->AH,"stroke:","#808080\n");
+    if(val < m->LL)    s->svgChangeStyleOption(m->AL,"stroke:","#ff6600\n");
+    else
+        if(val < m->L) s->svgChangeStyleOption(m->AL,"stroke:","#ffff00\n");
+        else           s->svgChangeStyleOption(m->AL,"stroke:","#808080\n");
+
+    s->show(m->A1, (val >= m->HH) || (val <= m->LL) );
+    s->show(m->A2, (val > m->H && val < m->HH) || (val > m->LL && val < m->L) );
+}
+
+void PIDSetValue(meterSvg *m, float SP, float MV)
+{
+    rlSvgAnimator *s = m->s;
+
+    float Vpu = ((SP-m->Vmin)/(m->Vmax-m->Vmin));
+    Vpu = Vpu > 1 ? 1 : Vpu < 0 ? 0 : Vpu;
+    s->setMatrix(m->SP, 1, 0, 0,(0.5 - Vpu)*100 , 0,0);
+
+    Vpu = MV / 100;
+    Vpu = Vpu > 1 ? 1 : Vpu < 0 ? 0 : Vpu;
+    s->setMatrix(m->MV, 1, 0, 0,(0.5 - Vpu)*100 , 0,0);
+}
+
+////////////////////////////////////////////////////////////////////////
 
 // _begin_of_generated_area_ (do not edit -> use ui2pvc) -------------------
 

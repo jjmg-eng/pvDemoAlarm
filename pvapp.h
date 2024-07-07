@@ -49,15 +49,15 @@ int show_mask1(PARAM *p);
 #include "rltime.h"
 #include "qtdatabase.h"
 #include "jjalarm.h"
-#include "rlsvganimator.h"
-#include "pugixml.hpp"
 #include <math.h>
-
-#define BG_COLOR 0xef,0xf0,0xf1
 
 /////////////////////////////////////////////
 #ifndef _MAIN_  // Código exclusivo das Masks
 /////////////////////////////////////////////
+
+#include "rlsvganimator.h"
+#include "pugixml.hpp"
+
 extern rlMutex    dbmutex;
 extern qtDatabase db;
 // Funções comuns para as máscaras inseridas em mask1.cpp
@@ -66,6 +66,32 @@ extern int maskTextEvent(const char *text);
 extern int drawSVG(PARAM *p, int id,rlSvgAnimator *s);
 extern int initSVG(PARAM *p, int id, rlSvgAnimator *s, const char *filename, int x, int y, int w, int h, float SCALE);
 extern rlModbusClient     modbus;
+
+#define BG_COLOR 0xef,0xf0,0xf1
+
+typedef struct
+{
+    float cx, cy, rx, ry, start, end;
+    float Vmin, Vmax, LL, HH, L, H;
+    char NAME[32], VAL[32],NEEDLE[32],TAG[32],AH[32],AL[32],A1[32],A2[32],SP[32],MV[32];
+    rlSvgAnimator *s;
+}
+meterSvg;
+
+void initMeter(meterSvg *m, rlSvgAnimator *s, const char *fileName,
+              const char *Name, float Vmin, float Vmax);
+              
+void MeterSetValue(meterSvg *m, float val);
+
+void initBargraph(meterSvg *m, rlSvgAnimator *s, const char *fileName, const char *Name,
+                float Vmin, float Vmax,
+                float LL, float HH,
+                float L, float H,
+                float LO, float HI);
+                
+void BargraphSetValue(meterSvg *m, float val);
+
+void PIDSetValue(meterSvg *m, float SP, float MV);
 
 /////////////////////////////////////////////////////////////////
 #else // Aqui começa o código que vai ser compilado na seção Main
