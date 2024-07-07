@@ -32,6 +32,10 @@ int ret;
     if(trace) printf("show_mask%d\n", ret);
     switch(ret)
     {
+      case 4:
+        pvStatusMessage(p,-1,-1,-1,"mask4");
+        ret = show_mask4(p);
+        break;
       case 3:
         pvStatusMessage(p,-1,-1,-1,"mask3");
         ret = show_mask3(p);
@@ -76,7 +80,9 @@ int   s;
 
   pvInit(ac,av,&p);
   /* here you may interpret ac,av and set p->user to your data */
+
   usrThread.create(&usrMain,NULL);
+
   while(1)
   {
     s = pvAccept(&p);
