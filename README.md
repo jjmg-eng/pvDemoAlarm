@@ -8,19 +8,29 @@ Para facilitar a configuração de um setup completo para trabalhar com o pvbrow
 O script intalará todos os pacotes que são usados nos projetos da JJMG:
 
 -pvbrowser
+
 -MariaDB
+
 -Grafana 11
+
 -ZeroTier
+
 -libpugixml
+
 -Diversas outras bibliotecas de comunicação
+
 -Programas para teste com o protocolo Modbus:
-	-qModMaster
-	-ScanBus_BR
-	-diagslave
+
+ 	-qModMaster
+
+ 	-ScanBus_BR
+
+ 	-diagslave
 
 Configure seu usuário no MySQL:
 
-sudo MySQL
+> sudo MySQL
+
 > create user <nome do seu usuário>@localhost;
 > 
 > grant all on *.* to <nome do seu usuário>@localhost;
