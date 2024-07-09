@@ -116,7 +116,6 @@ void MeterSetValue(meterSvg *m, float val)
     arc += m->end > m->start ? 0 : 360;
     float ea = m->start + Vpu * arc, sa = m->start;
     m->s->svgPrintf(m->VAL,"d=","%s",describeArc(buf, m->cx, m->cy, m->rx, sa, ea));
-//    m->s->setMatrix(m->NEEDLE, 1, ( Vpu - 0.5) * acos(-1) * arc/180, 0,0, m->cx, m->cy);
     m->s->setMatrix(m->NEEDLE, 1, (Vpu * arc - 270 + sa) * acos(-1)/180, 0,0, m->cx, m->cy);
     m->s->svgTextPrintf(m->TAG,"%4.0f",val);
 }
@@ -226,6 +225,65 @@ void PIDSetValue(meterSvg *m, float SP, float MV)
     Vpu = Vpu > 1 ? 1 : Vpu < 0 ? 0 : Vpu;
     s->setMatrix(m->MV, 1, 0, 0,(0.5 - Vpu)*100 , 0,0);
 }
+
+void initRadar(meterSvg *m, rlSvgAnimator *s, const char *fileName,
+              const char *Name, int n)
+{
+    float alpha = 90, delta = 360.0 / n, radius = 35;
+    cartesian p;
+    int i, j, k;
+    char buf[1024], id[16];
+
+    strcpy(m->NAME,Name);
+    m->s = s;
+    m->n = n;
+    pugi::xml_document doc;
+    doc.load_file(fileName);
+    pugi::xml_node node = doc.child("svg").child("g").child("g");
+    pugi::xml_node meter = node.find_child_by_attribute("g", "id", Name);
+
+    meter = meter.first_child();
+    strcpy(id, meter.attribute("id").value()); printf("%s\n", id);
+
+    i=0;
+    for(j=0; j<n; j++){
+        polarToCartesian(0, 0, radius, alpha + delta * j,  &p);
+        i += sprintf(&buf[i],"M 0,0 %g,%g ", p.x, -p.y);
+    }
+    printf("%s\n", buf);
+    s->svgPrintf(id, "d=", "%s", buf); 
+    puts("ok");
+
+
+    for(k = 0; k<6; k++){
+	    meter = meter.next_sibling();
+	    strcpy(id, meter.attribute("id").value()); printf("%s\n", id);
+	    i = sprintf(buf,"M ");
+	    for(j = 0; j<=n; j++){
+	        polarToCartesian(0, 0, radius * (k == 5 ? 0.5 : 1 - 0.2 * k), alpha + delta * (j == n ? 0 : j),  &p);
+
+	        i += sprintf(&buf[i],"%g,%g ", p.x, -p.y);
+	    }
+	    s->svgPrintf(id, "d=", "%s", buf); 
+    }
+
+    strcpy(m->VAL,id);
+}
+
+void RadarSetValue(meterSvg *m, float *val)
+{
+    char buf[1024];
+    int i, j, n = m->n;
+    float alpha = 90, delta = 360.0 / n;
+    cartesian p;
+    i = sprintf(buf,"M ");
+    for(j = 0; j<=n; j++){
+        polarToCartesian(0, 0, 35 * val[j == n ? 0 : j] / 100, alpha + delta * (j == n ? 0 : j),  &p);
+        i += sprintf(&buf[i],"%g,%g ", p.x, -p.y);
+    }
+    m->s->svgPrintf(m->VAL,"d=","%s",buf);
+}
+
 
 ////////////////////////////////////////////////////////////////////////
 

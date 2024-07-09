@@ -32,7 +32,7 @@ static int slotNullEvent(PARAM *p, DATA *d)
 {
   if(p == NULL || d == NULL) return -1;
   dbmutex.lock();
-  db.query(p,"select substring(DATE_FORMAT(t, '%Y-%m-%d %H:%i:%s.%f'),1,23) as 'Data e hora',Estado,Descrição from ALARM order by t desc limit 2000;");
+  db.query(p,"select substring(DATE_FORMAT(t, '%Y-%m-%d %H:%i:%s.%f'),1,23) as 'Data e hora',Estado,Descrição from Alarm order by t desc limit 2000;");
   db.populateTable(p,AlarmTable);
   dbmutex.unlock();
   return 0;

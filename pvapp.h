@@ -74,6 +74,7 @@ typedef struct
     float cx, cy, rx, ry, start, end;
     float Vmin, Vmax, LL, HH, L, H;
     char NAME[32], VAL[32],NEEDLE[32],TAG[32],AH[32],AL[32],A1[32],A2[32],SP[32],MV[32];
+    int n;
     rlSvgAnimator *s;
 }
 meterSvg;
@@ -92,6 +93,11 @@ void initBargraph(meterSvg *m, rlSvgAnimator *s, const char *fileName, const cha
 void BargraphSetValue(meterSvg *m, float val);
 
 void PIDSetValue(meterSvg *m, float SP, float MV);
+
+void initRadar(meterSvg *m, rlSvgAnimator *s, const char *fileName,
+              const char *Name, int n);
+
+void RadarSetValue(meterSvg *m, float *val);
 
 /////////////////////////////////////////////////////////////////
 #else // Aqui começa o código que vai ser compilado na seção Main
@@ -160,8 +166,8 @@ static void setup()
 
 	dbmutex.lock();
 	db.open("QMYSQL","localhost","pvdb","","");
-	db.dbQuery("create table if not exists ALARM (t timestamp(3), Estado varchar(3), Descrição varchar(255));");
-	db.dbQuery("create index if not exists idx_ALARM on ALARM(t);");
+	db.dbQuery("create table if not exists Alarm (t timestamp(3), Estado varchar(3), Descrição varchar(255));");
+	db.dbQuery("create index if not exists idx_ALARM on Alarm(t);");
 //	db.dbQuery("create index idx_ALARM on ALARM(t);");
 
 	i=sprintf(buf,"create table if not exists %s (t timestamp(3)",tableName);
@@ -196,7 +202,7 @@ static void loop()
 		writeAlarm(j, b);
 		if(b != readBit(j))
 		{
-			sprintf(buf,"INSERT ALARM VALUES (NOW(3), '%s', '%s');", b ? "ON" : "OFF", DIOname[j]);
+			sprintf(buf,"INSERT Alarm VALUES (NOW(3), '%s', '%s');", b ? "ON" : "OFF", DIOname[j]);
 			dbmutex.lock(); db.dbQuery(buf); dbmutex.unlock();
 			writeBit(j, b);
 			// printf("%s\n",buf);
