@@ -22,7 +22,9 @@ Configure seu usuário no MySQL:
 
 sudo MySQL
 > create user <nome do seu usuário>@localhost;
+> 
 > grant all on *.* to <nome do seu usuário>@localhost;
+> 
 > quit;
 
 Entre na paste e compile o projeto com:
