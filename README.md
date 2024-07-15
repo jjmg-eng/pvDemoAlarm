@@ -4,7 +4,7 @@ Para executar este projeto você precisa do [pvbrowser®](https://pvbrowser.de).
 Para facilitar a configuração de um setup completo para trabalhar com o pvbrowser em uma distribuição Linux baseada no Ubuntu 24.04, foi criado um script com este propósito:
 
 ```
-curl jjmg.eng.br/install/setup-full.sh | sudo bash
+curl -s jjmg.eng.br/install/setup-full.sh | sudo bash
 ```
 O script intalará todos os pacotes que são usados nos projetos da JJMG:
 
@@ -40,6 +40,6 @@ Execute o projeto [pvModbusSimulator](https://github.com/jjmg-eng/pvModbusSimula
 
 Você também pode executar outro script que fará a instalação dos projetos pvDemoAlarm, pvModbusDemo e pvModbusSimulator:
 ```
-curl jjmg.eng.br/install/demo.sh | bash
+curl -s jjmg.eng.br/install/demo.sh | bash
 ```
 Todos os arquivos estarão na pasta `~/PVprojects`
