@@ -9,6 +9,7 @@ static const char *maskName[] ={
 " Mask2 - Histórico de Eventos",
 " Mask3 - Unifilar para Teste de SVG",
 " Mask4 - Módulos SVG para ISA101 ",
+" Mask5 - Tanques ",
 "" };
 
 void configMask(PARAM *p, int id, int index)
