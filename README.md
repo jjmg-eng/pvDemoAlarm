@@ -40,6 +40,6 @@ Execute o projeto [pvModbusSimulator](https://github.com/jjmg-eng/pvModbusSimula
 
 Você também pode executar outro script que fará a instalação dos projetos pvDemoAlarm, pvModbusDemo e pvModbusSimulator:
 ```
-curl -s jjmg.eng.br/install/demo.sh | bash
+curl -Ls jjmg.eng.br/install/demo.sh | bash
 ```
 Todos os arquivos estarão na pasta `~/PVprojects`
